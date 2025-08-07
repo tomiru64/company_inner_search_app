@@ -44,13 +44,22 @@ TEMPERATURE = 0.5
 
 
 # ==========================================
+# テキスト分割・検索関連の設定
+# ==========================================
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
+NUM_RETRIEVED_DOCS = 5
+
+
+# ==========================================
 # RAG参照用のデータソース系
 # ==========================================
 RAG_TOP_FOLDER_PATH = "./data"
 SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,
     ".docx": Docx2txtLoader,
-    ".csv": lambda path: CSVLoader(path, encoding="utf-8")
+    ".csv": lambda path: CSVLoader(path, encoding="utf-8"),
+    ".txt": lambda path: TextLoader(path, encoding="utf-8")
 }
 WEB_URL_LOAD_TARGETS = [
     "https://generative-ai.web-camp.io/"
